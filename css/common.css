@@ -12,6 +12,12 @@
     align-items: center;
 }
 
+/* 决定主轴的方向 */
+.flex-column {
+    flex-direction: column;
+}
+
+/* justify-content属性定义了项目在主轴上的对齐方式。*/
 .justify-content-start {
     justify-content: flex-start;
 }
@@ -32,6 +38,7 @@
     justify-content: space-around;
 }
 
+/* align-items属性定义项目在交叉轴上如何对齐*/
 .align-items-start {
     align-items: flex-start;
 }
@@ -44,9 +51,7 @@
     align-items: center;
 }
 
-.flex-column {
-    flex-direction: column;
-}
+
 /* 单行文本溢出处理 */
 .single-text-omitted{
     text-overflow: ellipsis;

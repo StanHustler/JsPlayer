@@ -6,20 +6,19 @@
 }
 
 .wrapper .header {
-    /* margin-bottom: 10px; */
+     /*margin-bottom: 10px;*/
     width: 100%;
     font-size: 20px;
     text-align: center;
-    background-color: #2bb669;
+    background-color: #c20c0c;
     color: #fff;
     padding: 15px 0;
 }
 
 .wrapper .content {
     width: 100%;
-        /* 新增内容 */
-        min-height: 580px;
-        margin-top: 10px;
+    min-height: 580px;
+    margin-top: 10px;
 }
 
 .wrapper .player-control {
@@ -30,9 +29,9 @@
 
 .wrapper .content {
     width: 100%;
-        /* 新增 */
-        position: relative;
+    position: relative;
 }
+
 .w {
     width: 90%;
     margin: 0 auto;
@@ -64,7 +63,8 @@
     text-align: center;
     color: rgba(255, 255, 255, .6);
     cursor: pointer;
-}	
+}
+
 .carousel-control-left {
     left: 10px;
 }
@@ -93,19 +93,19 @@
     overflow: hidden;
 }
 
-.carousel-item>img {
+.carousel-item > img {
     width: 100%;
     height: auto;
 }
 
 .carousel-indicators {
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
 }
 
-.carousel-indicators>li {
+.carousel-indicators > li {
     width: 50px;
     height: 4px;
     background-color: rgba(255, 255, 255, .4);
@@ -113,7 +113,7 @@
     cursor: pointer;
 }
 
-.carousel-indicators>.active {
+.carousel-indicators > .active {
     background-color: rgba(255, 255, 255, .9);
 }
 
@@ -139,7 +139,7 @@
 .recommend-playlist-cover {
     width: 100%;
     position: relative;
-    border-radius: 8px;
+    border-radius: 10px;
     overflow: hidden;
     font-size: 0;
 }
@@ -148,8 +148,7 @@
     width: 100%;
     height: auto;
     font-size: 0;
-        /* 新增样式 */
-        transition: transform .2s linear;
+    transition: transform .2s linear;
 }
 
 .recommend-playlist-cover .recommend-playlist-icon {
@@ -159,15 +158,13 @@
     right: 5px;
     color: #ccc;
     font-size: 20px;
-            /* 新增样式 */
-            transition: opacity .2s linear;
+    transition: opacity .2s linear;
 }
 
 .hover .recommend-playlist-icon {
     opacity: 1;
 }
 
-/* 新增样式 */
 .hover .recommend-playlist-cover img {
     transform: scale(1.1)
 }
@@ -202,7 +199,7 @@
     font-size: 0;
 }
 
-.player-control-songinfo .img>img {
+.player-control-songinfo .img > img {
     width: 100%;
     height: 100%;
 }
@@ -211,17 +208,17 @@
     width: 50%;
 }
 
-.player-control-songinfo .songinfo>span {
+.player-control-songinfo .songinfo > span {
     margin: 4px;
     margin-left: 6px;
     width: 100%;
 }
 
-.player-control-songinfo .songinfo>.songname {
+.player-control-songinfo .songinfo > .songname {
     font-size: 16px;
 }
 
-.player-control-songinfo .songinfo>.singer {
+.player-control-songinfo .songinfo > .singer {
     font-size: 14px;
 }
 
@@ -262,63 +259,67 @@
 .player-control-unit #volume-bar {
     width: 50px;
 }
-.player-control-unit .progress .progress-bar{
+
+.player-control-unit .progress .progress-bar {
     position: absolute;
-    width:50%;
-    height:4px;
-    background-color: #4dc376;
-}
-.player-control-unit .progress .progress-dot{
-    position: absolute;
-    top:-2px;
-    left:-2px;
-    width:8px;
-    height:8px;
-    border-radius: 50%;
-    background-color: #4dc376;
+    width: 50%;
+    height: 4px;
+    background-color: #c20c0c;
 }
 
-.player-list{
+.player-control-unit .progress .progress-dot {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #c20c0c;
+}
+
+.player-list {
     position: absolute;
     height: 590px;
     background-color: #f6f6f8;
-    right:0;
-    top:50px;
-    width:40%;
+    right: 0;
+    top: 50px;
+    width: 40%;
     padding: 0 10px;
     overflow-y: scroll;
-    
+
 }
 
-.player-list .player-list-title{
+.player-list .player-list-title {
     height: 40px;
     line-height: 40px;
     font-weight: 900;
     border-bottom: 1px solid #e1e1e1;
 }
-.player-list .player-list-ul{
-    margin-top:10px;
+
+.player-list .player-list-ul {
+    margin-top: 10px;
 }
-.player-list .player-list-ul .player-list-li{
-    color:#111;
+
+.player-list .player-list-ul .player-list-li {
+    color: #111;
     width: 100%;
     margin: 10px 0;
 }
 
-.player-list .player-list-ul .player-list-li .song-name{
-    width:50%;
+.player-list .player-list-ul .player-list-li .song-name {
+    width: 50%;
     margin-left: 5px;
 
 }
 
-.player-list .player-list-ul .player-list-li .singer{
-    width:25%;
+.player-list .player-list-ul .player-list-li .singer {
+    width: 25%;
 }
 
-.player-list .player-list-ul .player-list-li .song-time{
-    width:25%;
+.player-list .player-list-ul .player-list-li .song-time {
+    width: 25%;
 }
 
-.player-list .player-list-ul .player-list-li .opacity{
+.player-list .player-list-ul .player-list-li .opacity {
     opacity: 0;
 }
