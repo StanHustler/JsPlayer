@@ -1,6 +1,9 @@
 `document.querySelector('#app').innerHTML = '111';`
 
-// home.js
+/**
+ * home template
+ * @type {string}
+ */
 const homePageTemplate = `
 <div class="w">
     <div class="carousel-wrapper">

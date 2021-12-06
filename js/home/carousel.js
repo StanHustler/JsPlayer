@@ -61,7 +61,7 @@ export function carouselRender(data) {
     // 通过定时器开启自动轮播,每过一段时间调用 getNext 方法
     let timer = setInterval(getNext, carousel.times);
     carousel.autoCycleTimer.add(timer);
-};
+}
 
 function getPrev() {
     // 获取到轮播图每一项的图片容器
