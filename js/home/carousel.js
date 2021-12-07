@@ -1,6 +1,9 @@
 import { debounce } from '../util/util.js';
 
-// 切换箭头为静态 HTML 样式，无需根据图片数量动态生成。
+/**
+ * carousel箭头静态HTML样式
+ * @type {string}
+ */
 const carouselControl = `
 <button class="carousel-control carousel-control-left carousel-control-hover">
 <svg class="icon" aria-hidden="true">
@@ -13,24 +16,37 @@ const carouselControl = `
 </svg>
 </button>
 `;
-//轮播图配置
+
+/**
+ * 轮播图配置对象
+ * @type {{times: number, data: *[], autoCycleTimer: Set<any>, animationTimes: number, currentIndex: number}}
+ */
 const carousel = {
     data: [],//轮播图数据
     currentIndex: 0,//轮播图当前切换的画面
-    times: 2000,//轮播图多少时间切换画面
+    times: 5000,//轮播图多少时间切换画面
     animationTimes: 0.5,//轮播图动画持续时间，单位s
     autoCycleTimer: new Set(),//如果在切换动画，无法进行切换画面
 }
 
+/**
+ * 轮播图生成器
+ * @param data jsonData
+ */
 export function carouselRender(data) {
-    //初始化轮播图
+    // 初始化轮播图
     let carouselItem = '', carouselIndicatorsLi = '';
     const wrapper = document.querySelector('.carousel-wrapper');
-    let { width = 0 } = wrapper.getBoundingClientRect();//得到图片的宽度
-    //动态生成轮播图
+    // 得到图片的宽度,解构赋值(ES6)
+    let { width = 0 } = wrapper.getBoundingClientRect();
+    // 动态生成轮播图
+    /*  forEach调用数组的每个元素，并将元素传递给回调函数
+        json: type(item) = {}
+        高内聚低耦合
+    */
     data.forEach((item, index) => {
         //指示器激活选中判断
-        let isActive = (carousel.currentIndex == index) ? 'active' : '';
+        let isActive = (carousel.currentIndex === index) ? 'active' : '';
         //动态生成轮播图图片，并给每一张图片加上偏移量和动画效果
         carouselItem += `
             <div class="carousel-item ${'#' + index}" style='transform:translateX(${width * (index - 1)}px);transition-duration:${carousel.animationTimes}s'>
@@ -42,7 +58,11 @@ export function carouselRender(data) {
                 <li data-slide-to="${index}" class="carousel-indicators-li ${(isActive)}"></li>
             `
     });
-    // 通过模板字符串，按照 home.html 中的 html 结构进行排布
+
+    /**
+     * 通过模板字符串，按照 home.html 中的 html 结构进行排布
+     * @type {string}
+     */
     const carouselContainer = `
         <div class="carousel-container" style="transition:transform ${carousel.animationTimes}s ">
             ${carouselControl} 
@@ -64,21 +84,26 @@ export function carouselRender(data) {
 }
 
 function getPrev() {
-    // 获取到轮播图每一项的图片容器
+    // 获取到轮播图每一项的图片容器 =>NodeList
     const carouselItems = document.getElementsByClassName('carousel-item');
     let length = carouselItems.length;
     // 当后退到第一张时，重置为总长度，防止index变为负数导致bug
-    carousel.currentIndex == 0 && (carousel.currentIndex = length);
+    /*&&(ES6):
+    如果执行a()后返回true，则执行b()并返回b的值；如果执行a()后返回false，则整个表达式返回a()的值，b()不执行；*/
+    carousel.currentIndex === 0 && (carousel.currentIndex = length);
     // 每调用一次 getPrev，序号-1
     let index = carousel.currentIndex = --carousel.currentIndex % length;
-    // 将类数组转变为数组
+    // 将NodeList转变为数组
     let newArr = Array.from(carouselItems);
     // 计算得到轮播图每一项的图片容器的宽度
     let { width = 0 } = getElementRect(carouselItems[0]);
     // 轮播图数组移动
+    /*扩展操作符(ES6)
+    取出参数对象中的所有可遍历属性，拷贝到当前对象之中 => 合并数组
+    */
     newArr = [...newArr.slice(index), ...newArr.slice(0, index)];
     newArr.forEach((item, i) => {// 轮播图数组第一项移动到最后一项，其他项顺序不变
-        if (i == 0) { 
+        if (i === 0) {
             item.style.transform = `translateX(${width * (length - 1)}px)`;
             item.style.opacity = 0;
         }
@@ -98,10 +123,10 @@ function getNext() {
     let lens = newArr.length;
      let { width = 0 } = getElementRect(carouselItems[0]);
     //当index为0时轮播图数组不做处理，>0时进行数组每一项移动
-    index != 0 && (newArr = [...newArr.slice(-index, lens), ...newArr.slice(0, lens - index)]);
+    index !== 0 && (newArr = [...newArr.slice(-index, lens), ...newArr.slice(0, lens - index)]);
 
     newArr.forEach((item, i) => {
-        if (i == 0) {// 因为向右移动，轮播图数组最后一项移动到第一项，其他项顺序不变
+        if (i === 0) {// 因为向右移动，轮播图数组最后一项移动到第一项，其他项顺序不变
             item.style.transform = `translateX(${-width * (length - 1)}px)`;
             item.style.opacity = 0;
         }
@@ -116,7 +141,7 @@ function indicatorsRender(index) {
     // 获取到轮播图每一项的指示器
     const indicators = document.getElementsByClassName('carousel-indicators-li');
     Array.from(indicators).forEach((item, i) => {
-        if (index == i) { // 当 index 和指示器下标相同添加active类
+        if (index === i) { // 当 index 和指示器下标相同添加active类
             item.setAttribute('class', 'carousel-indicators-li active')
         } else {
             item.setAttribute('class', 'carousel-indicators-li')
@@ -164,7 +189,10 @@ export function initCarouselEvent() {
     leftControl[0].addEventListener('click', leftHandleDebounce);
     rightControl[0].addEventListener('click', rightHandleDebounce);
     
-    // 移入移出控制轮播播放事件 
+    // 移入移出控制轮播播放事件
+    /*mouseenter(指针穿过,子集不执行)
+    mouseover(指针上方,子元素执行)
+    对称*/
     carouselContainer.addEventListener('mouseenter', () => {
         //移入轮播图通过移除定时器达到轮播图暂停的目的
         clearAllTimer()

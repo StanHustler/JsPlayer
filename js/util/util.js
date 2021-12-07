@@ -1,5 +1,11 @@
+/**
+ * @description 防抖函数
+ * @param fn
+ * @param times
+ * @param isImmediately
+ * @returns {cb}
+ */
 export function debounce(fn, times, isImmediately = true) {
-    //防抖函数
     let timer = null;
     let cb;
     if (isImmediately) {

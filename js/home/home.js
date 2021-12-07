@@ -76,7 +76,7 @@ export async function homePage(){
     //首页初始化
     document.querySelector('#app').innerHTML = homePageTemplate;
     const result = await getBannerList()
-    const carouselData = result.data.blocks[0].extInfo.banners;;
+    const carouselData = result.data.blocks[0].extInfo.banners;
     //首次渲染轮播图
     carouselRender(carouselData);
     //轮播图事件绑定

@@ -1,20 +1,30 @@
 const BASE_URL = 'http://localhost:3000';
-export default function Ajax({ //请求参数配置
-                                 method = "GET",  //默认为'get'请求
-                                 url,
-                                 data = {}
-                             }) {
+/**
+ * @constructor
+ * @param method {string} 默认为'get'请求
+ * @param url {string} urls
+ * @param data
+ * @returns {Promise<unknown>}
+ */
+export default function Ajax(
+    { //请求参数配置
+        method = "GET",
+        url,
+        data = {}
+    }
+) {
     return new Promise(resolve => { // 返回异步请求
         const xhr = new XMLHttpRequest();
         xhr.open(method, BASE_URL + url)
         xhr.onload = function () {
+            // 将数据转换为 JavaScript 对象
             resolve(JSON.parse(xhr.response))
         }
         xhr.onerror = function () {
             console.log(xhr)
-            if (xhr.status == 0) {
-
-            }
+            // if (xhr.status == 0) {
+            //
+            // }
         }
         xhr.send(JSON.stringify(data));
     })
@@ -22,7 +32,6 @@ export default function Ajax({ //请求参数配置
 
 /**
  * @description: 获得轮播图信息
- * @param {*}
  * @return {*}
  */
 export async function getBannerList() {
