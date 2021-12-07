@@ -176,6 +176,15 @@ function rightHandle() {//右切换箭头事件处理
     carousel.autoCycleTimer.add(timer)
 }
 
+function hideArrow() {
+    document.getElementsByClassName('carousel-control')[0].classList.add('carousel-control-hover')
+    document.getElementsByClassName('carousel-control')[1].classList.add('carousel-control-hover')
+}
+
+function showArrow() {
+    document.getElementsByClassName('carousel-control')[0].classList.remove('carousel-control-hover')
+    document.getElementsByClassName('carousel-control')[1].classList.remove('carousel-control-hover')
+}
 //函数防抖
 const leftHandleDebounce = debounce(leftHandle, 500);
 const rightHandleDebounce = debounce(rightHandle, 500);
@@ -196,9 +205,11 @@ export function initCarouselEvent() {
     carouselContainer.addEventListener('mouseenter', () => {
         //移入轮播图通过移除定时器达到轮播图暂停的目的
         clearAllTimer()
+        showArrow()
     });
     
     carouselContainer.addEventListener('mouseleave', () => {
+        hideArrow()
         //移出轮播图通过设置定时器达到开启轮播图轮播的目的
         let timer = setInterval(getNext, carousel.times);
         carousel.autoCycleTimer.add(timer)
