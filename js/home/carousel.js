@@ -176,6 +176,7 @@ function rightHandle() {//右切换箭头事件处理
     carousel.autoCycleTimer.add(timer)
 }
 
+// TODO: Standardize
 function hideArrow() {
     document.getElementsByClassName('carousel-control')[0].classList.add('carousel-control-hover')
     document.getElementsByClassName('carousel-control')[1].classList.add('carousel-control-hover')

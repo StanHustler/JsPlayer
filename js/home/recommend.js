@@ -34,6 +34,7 @@ export function recommendRender(data) {
  */
 export function initRecommendEvent() { //动态增加 hover 类
     const recommendWrapper = document.querySelector('.recommend-playlist-container');
+    // TODO: Standardize
     recommendWrapper.addEventListener('mouseenter', (e) => {
         if (e.target.tagName === "LI") {
             e.target.setAttribute('class', 'recommend-playlist-item d-flex flex-column hover')
