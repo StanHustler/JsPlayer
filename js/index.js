@@ -9,12 +9,11 @@ import { reactive } from "./util/reactive.js";
 import { getRouterOptions } from "./util/util.js";
 import { initPlayerControl, initPlayerEvent } from "./home/control.js";
 
-//数据响应式执行函数
-let effective = () => changeComponent();
+
 // 数据响应式处理
-export const hashProxy = reactive({
+const hashProxy = reactive({
     hash: ""
-}, effective)
+}, changeComponent)
 
 import { homePage } from './home/home.js';
 import { recommendListPage } from './recommendList/recommendList.js';
