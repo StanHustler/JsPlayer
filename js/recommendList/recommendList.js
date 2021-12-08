@@ -25,7 +25,7 @@ const isPlayProxy = reactive({
 export const recommendListPage = async ({ params = '' }) => {
     document.querySelector('#app').innerHTML = `加载中`;
     const result = await getRecommendList(params)
-    if (result.code == 404) {
+    if (result.code === 404) {
         document.querySelector('#app').innerHTML = `未找到资源`;
     } else {
         recommendDetail.detail = result.playlist;
@@ -42,7 +42,7 @@ export const recommendListPage = async ({ params = '' }) => {
 function initDescribe() {
     let tagsTemplate = '';
     recommendDetail.detail.tags.forEach((tag, index) => {
-        index == recommendDetail.detail.tags.length - 1 ?
+        index === recommendDetail.detail.tags.length - 1 ?
             tagsTemplate += `<span class="tag">${tag}  </span>` :
             tagsTemplate += `<span class="tag">${tag} / </span>`
     });
@@ -115,10 +115,10 @@ function initList() {
     const listDom = document.getElementsByClassName('recommend-list-songlist-body')[0];
     let listTemplate = ''; let isEvenOrOdd = '';
     recommendDetail.playlist.forEach((item, index) => {
-        isEvenOrOdd = index % 2 == 0 ? 'even' : 'odd';
-        let isActive = activeProxy.active == item.id ? 'active' : '';
+        isEvenOrOdd = index % 2 === 0 ? 'even' : 'odd';
+        let isActive = activeProxy.active === item.id ? 'active' : '';
         let isPlay;
-        if (item.id == isPlayProxy.active) {
+        if (item.id === isPlayProxy.active) {
             isPlay = isPlayProxy.isPlay;
         } else {
             isPlay = false;
@@ -137,13 +137,13 @@ function initList() {
                     <use xlink:href="#icon-xiazai"></use>
                 </svg>
             </div>
-            <div class="songlist-songname">
+            <div class="songlist-songname single-text-omitted">
                 ${item.name}
             </div>
-            <div class="songlist-artist font-color">
+            <div class="songlist-artist font-color single-text-omitted">
                 ${item.ar[0].name}
             </div>
-            <div class="songlist-album font-color">
+            <div class="songlist-album font-color single-text-omitted">
                 ${item.al.name}
             </div>
             <div class="songlist-time font-color">
