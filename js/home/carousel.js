@@ -189,6 +189,9 @@ function showArrow() {
 const leftHandleDebounce = debounce(leftHandle, 500);
 const rightHandleDebounce = debounce(rightHandle, 500);
 
+/**
+ * @description 初始化轮播图事件
+ */
 export function initCarouselEvent() {
     const leftControl = document.getElementsByClassName('carousel-control-left');
     const rightControl = document.getElementsByClassName('carousel-control-right');
