@@ -41,7 +41,7 @@ const routers = [
 
 function changeComponent() {
     let options = getRouterOptions(hashProxy.hash);
-    const [{ component, name }] = routers.filter(router => router.name == options.name);
+    const [{ component, name }] = routers.filter(router => router.name === options.name);
     component(options);
     document.querySelector('#header-title').innerHTML = name;
 }
