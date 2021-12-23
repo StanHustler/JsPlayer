@@ -86,7 +86,7 @@
     line-height: 20px;
 }
 .player-lyric .lyric-wrap .song-lyric-item.active{
-    color: rgba(21, 218, 14, .7);
+    color: #c20c0c;
 
 }
 .player-background-image{
